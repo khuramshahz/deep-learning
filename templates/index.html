@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Actor Recognition</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #0d1117;
+            color: #c9d1d9;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .container {
+            margin-top: 80px;
+        }
+
+        .form-control, .btn {
+            border-radius: 0.5rem;
+        }
+
+        .btn-primary {
+            background-color: #1f6feb;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #388bfd;
+        }
+
+        .result-section {
+            margin-top: 30px;
+            background-color: #161b22;
+            padding: 20px;
+            border-radius: 1rem;
+        }
+
+        .img-preview {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            border: 2px solid #30363d;
+        }
+
+        .prediction-text {
+            font-size: 1.5rem;
+            color: #58a6ff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container text-center">
+    <h1 class="mb-4">🎯 AI Actor Recognition</h1>
+    <p class="mb-5">Upload an image and our Convolutional Neural Network (CNN) will identify the actor.</p>
+
+    <form method="POST" enctype="multipart/form-data" class="mb-4">
+        <div class="mb-3">
+            <input class="form-control" type="file" name="image" accept="image/*" required>
+        </div>
+        <button type="submit" class="btn btn-primary">🔍 Predict</button>
+    </form>
+
+    {% if prediction %}
+    <div class="result-section">
+        <p class="prediction-text">{{ prediction }}</p>
+        {% if image_url %}
+            <img src="{{ image_url }}" alt="Uploaded Image" class="img-preview mt-3">
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
